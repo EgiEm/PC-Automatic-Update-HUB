@@ -1,0 +1,68 @@
+# PROMPT: Weekly PC Health Report Generator
+# Kopjo tekstin e meposhtem dhe pastoje ne nje chat te ri me AI-n (psh Antigravity, ChatGPT, Gemini, etj.)
+
+---
+
+## ENGLISH PROMPT (copy this):
+
+Create a PowerShell script called `health_report.ps1` that generates a beautiful, modern HTML report showing my PC's health status. The report should be saved as an HTML file and automatically opened in my default browser.
+
+**My PC Specs:**
+- CPU: AMD Ryzen 7 9800X3D
+- GPU: NVIDIA GeForce RTX 5060 (8GB VRAM)
+- RAM: 32GB DDR5
+- OS: Windows 11
+- Storage: Check all drives automatically
+
+**The report must include these sections:**
+
+1. **System Overview** - OS version, hostname, uptime (how long the PC has been running since last restart), current date/time.
+
+2. **CPU Status** - Model name, core count, current usage percentage, and temperature if available via nvidia-smi or LibreHardwareMonitor localhost:8085 API.
+
+3. **GPU Status** - Model name, driver version, VRAM total/used, current temperature and utilization (query via nvidia-smi).
+
+4. **RAM Usage** - Total, used, free, and usage percentage with a visual bar chart.
+
+5. **Disk Health** - For each drive (C:, D:, etc.): total size, used space, free space, percentage used, and a color-coded bar (green < 70%, yellow 70-85%, red > 85%). Also check SSD/HDD health using `Get-PhysicalDisk` to show MediaType and HealthStatus.
+
+6. **Top 10 Processes by Memory** - A table listing the top 10 memory-hungry processes currently running (name, PID, memory in MB).
+
+7. **Network Status** - Active network adapter name, IP address, link speed, and a quick ping test to google.com and steamcommunity.com.
+
+8. **Startup Programs** - List programs that auto-start with Windows (from registry Run keys).
+
+**Design Requirements:**
+- Modern dark theme HTML (dark background #1a1a2e or similar, with accent colors like cyan/green/orange).
+- Use CSS Grid or Flexbox for responsive card-based layout.
+- Each section should be in its own card with rounded corners, subtle shadows, and a colored header.
+- Include visual progress bars for disk usage and RAM usage (not just numbers).
+- Use inline CSS only (no external stylesheets) so the HTML file is fully self-contained.
+- Add a footer showing when the report was generated.
+- Make it look premium and professional, not basic.
+
+**Script behavior:**
+- The script should collect all data, build the HTML string, save it to the same folder as the script with the filename `PC_Health_Report_YYYY-MM-DD.html` (using today's date).
+- After saving, automatically open the HTML file in the default browser.
+- Print a summary to the terminal showing where the report was saved.
+
+**Important:** 
+- Do NOT use any external modules or dependencies. Use only built-in PowerShell cmdlets and WMI/CIM queries.
+- The only exception is nvidia-smi for GPU data (which is already installed with NVIDIA drivers).
+- Save the script in: C:\Users\HP\Desktop\Brigada\updates, Drivers\health_report.ps1
+- After creating the script, push it to my GitHub repo "PC-Automatic-Update-HUB" with a natural commit message.
+
+---
+
+## ALBANIAN SUMMARY (Pershkrimi ne Shqip):
+
+Ky prompt kerkon krijimin e nje skripti PowerShell qe gjeneron nje raport te bukur HTML me dizajn modern (dark theme) qe tregon:
+- Informacionet e sistemit (OS, uptime, data)
+- Statusin e CPU-se dhe GPU-se (temperatura, perdorimi)
+- Perdorimin e RAM-it me grafike vizuale
+- Shendetin e diskut/disqeve (hapesira e lire, statusi i SSD)
+- Top 10 proceset qe perdorin me shume memorie
+- Statusin e rrjetit (IP, ping)
+- Programet qe hapen automatikisht me Windows
+
+Raporti ruhet si fajll HTML dhe hapet automatikisht ne browser.

@@ -21,6 +21,17 @@ A collection of custom PowerShell automation scripts designed to scan, manage, i
 *   **CPU Metrics**: Live-monitors utilization and core temperature of the AMD Ryzen 7 9800X3D CPU (integrates with LibreHardwareMonitor's JSON API).
 *   **Overheating Alerts**: Warns you with red console alerts if CPU exceeds 85°C or GPU exceeds 80°C.
 
+### 4. Weekly PC Health Report (`health_report.ps1`)
+*   Generates a self-contained, dark-themed **HTML dashboard** showing a full snapshot of your PC's health.
+*   **System Overview**: OS version, hostname, uptime since last restart.
+*   **CPU & GPU Status**: Model, driver version, current temperature, utilization, and VRAM usage.
+*   **RAM Usage**: Total/used/free with a color-coded progress bar.
+*   **Disk Health**: Per-drive usage bars with SSD/HDD health status from `Get-PhysicalDisk`.
+*   **Top 10 Processes**: A ranked table of the most memory-hungry processes running.
+*   **Network Status**: Active adapters, IP addresses, link speed, and ping tests to Google and Steam.
+*   **Startup Programs**: Lists everything that auto-starts with Windows.
+*   The report is saved as `PC_Health_Report_YYYY-MM-DD.html` and opens automatically in your browser.
+
 ---
 
 ## How to Run
@@ -52,6 +63,12 @@ To start the live dashboard checking temperatures and RAM usage:
 3. Run this command in PowerShell:
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\hardware_monitor.ps1
+```
+
+### Raporti Javor i Shëndetit (Weekly PC Health Report)
+To generate the full HTML health dashboard and open it in your browser:
+```powershell
+powershell -ExecutionPolicy Bypass -File .\health_report.ps1
 ```
 
 ---

@@ -12,7 +12,8 @@ Write-Host "Collecting system data..." -ForegroundColor Cyan
 # ── 1. SYSTEM OVERVIEW ──
 $os = Get-CimInstance Win32_OperatingSystem
 $cs = Get-CimInstance Win32_ComputerSystem
-$hostname = $cs.Name
+$hostnameRaw = $cs.Name
+$hostname = $hostnameRaw.Substring(0, [Math]::Min(2, $hostnameRaw.Length)) + "****"
 $osVersion = $os.Caption + " (Build " + $os.BuildNumber + ")"
 $bootTime = $os.LastBootUpTime
 $uptime = (Get-Date) - $bootTime
@@ -110,8 +111,10 @@ $netRows = ""
 foreach ($a in $adapters) {
     $ip = (Get-NetIPAddress -InterfaceIndex $a.ifIndex -AddressFamily IPv4 -ErrorAction SilentlyContinue | Select-Object -First 1).IPAddress
     if (-not $ip) { $ip = "N/A" }
+    # Mask IP address for privacy (show only last octet)
+    $maskedIp = "*.*.*" + $ip.Substring($ip.LastIndexOf("."))
     $speed = if ($a.LinkSpeed) { $a.LinkSpeed } else { "N/A" }
-    $netRows += "<tr><td>$($a.Name)</td><td>$ip</td><td>$speed</td></tr>"
+    $netRows += "<tr><td>$($a.Name)</td><td>$maskedIp</td><td>$speed</td></tr>"
 }
 
 # Ping tests
@@ -137,7 +140,10 @@ foreach ($path in $startupPaths) {
     if ($items) {
         $props = $items.PSObject.Properties | Where-Object { $_.Name -notlike "PS*" }
         foreach ($prop in $props) {
-            $startupRows += "<tr><td>$($prop.Name)</td><td style='word-break:break-all;max-width:500px;'>$($prop.Value)</td></tr>"
+            # Sanitize file paths to hide username
+            $cleanPath = $prop.Value -replace 'C:\\Users\\[^\\]+\\', 'C:\Users\***\'
+            $cleanPath = $cleanPath -replace '"C:\\Users\\[^\\]+\\', '"C:\Users\***\'
+            $startupRows += "<tr><td>$($prop.Name)</td><td style='word-break:break-all;max-width:500px;'>$cleanPath</td></tr>"
         }
     }
 }

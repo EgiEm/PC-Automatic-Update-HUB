@@ -1,8 +1,10 @@
-﻿test_*.ps1
+test_*.ps1
 get_token.ps1
 push_direct.ps1
 push_separate.ps1
+push_new_files.ps1
 gpu_structure.json
 lookup.xml
 *.log
+PC_Health_Report_*.html
 .system_generated/

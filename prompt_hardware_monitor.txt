@@ -1,0 +1,19 @@
+# PROMPT FOR HARDWARE MONITOR & TEMPERATURE CHECK
+# Kopjo tekstin e meposhtem per ta kerkuar ne Google, ose per t'ia dhene nje AI Assistant.
+
+---
+
+[ENGLISH PROMPT FOR GOOGLE / AI]
+"How to monitor CPU (AMD Ryzen 9800X3D) and GPU (NVIDIA RTX 5060) temperatures and RAM usage live in Windows using PowerShell or lightweight open-source tools like LibreHardwareMonitor? Show me how to enable the local JSON Web Server in LibreHardwareMonitor and query it via a PowerShell script to print a real-time color-coded terminal dashboard."
+
+[ALBANIAN PROMPT / SHPJEGIMI]
+"Si të monitoroj temperaturat e CPU (Ryzen 7 9800X3D) dhe GPU (RTX 5060) si dhe përdorimin e RAM-it në kohë reale në Windows? Më trego si të përdor LibreHardwareMonitor (vegël falas me kod të hapur) për të aktivizuar serverin e saj lokal të të dhënave (JSON Web Server në portën 8085) dhe si të shkruaj një skript në PowerShell që merr këto të dhëna live çdo 2 sekonda dhe i shfaq bukur në terminal me ngjyra."
+
+---
+
+### REKOMANDIMI TEKNIK (Si ta realizosh kete):
+Mënyra më e saktë dhe më profesionale për ta bërë këtë në Windows pa ngarkuar sistemin është:
+
+1. Shkarko **LibreHardwareMonitor** (Falas & Open-Source) nga faqja zyrtare ose GitHub.
+2. Hap programin, shko te menuja **Options** dhe kliko **"Run Web Server"** (kjo do të hapë një server të brendshëm lokal në adresën `http://localhost:8085/data.json`).
+3. Krijo një skript në PowerShell që lexon këtë adresë çdo 2 sekonda dhe nxjerr temperaturat live në terminal.
